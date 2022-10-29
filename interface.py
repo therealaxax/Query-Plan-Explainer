@@ -7,6 +7,11 @@ import annotations
 
 sg.theme('DarkTeal12')
 
+# This function is for the user to enter the db password
+def databasepw():
+    dbpassword = input("Please enter your password to access PostGreSQL: ")
+    annotations.setpassword(dbpassword)
+
 # Function displays GUI, this is called by project.py
 def display():
     layout = [
@@ -17,7 +22,7 @@ def display():
             [sg.Text('FROM Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-FROM-', font=('Helvetica', 14))],
             [sg.Text('WHERE Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-WHERE-', font=('Helvetica', 14))],
             [sg.Text('')],
-            [sg.Button("Send", font=('Helvetica', 14), button_color=('Black', 'LightBlue'))],
+            [sg.Button("Send", font=('Helvetica', 14), button_color=('Black', 'LightBlue')), sg.Button("Close", font=('Helvetica', 14), button_color=('Black', 'LightBlue'))],
             [sg.Text('')],
             [sg.Text('')],
             [sg.Text('')],
@@ -51,11 +56,14 @@ def display():
             
             # This is the part to call annotation.py with the parameters of the user input SQL text
             # And get back the return values from annotations.py
-            raw_data, output = annotations.explain(select_text, from_text, where_text)
+            # raw_data, output = annotations.explain(select_text, from_text, where_text)
+            raw_data, output = annotations.testexplain(select_text, from_text, where_text)
 
             # Use returned values to label the frontend
             window['-RESULTS-'].update(raw_data)
             window['-OUTPUT-'].update(str(output))
+        elif event == "Close":
+            break
         
     
     
