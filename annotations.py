@@ -1,4 +1,3 @@
-from re import 
 import psycopg2
 import textwrap
 import re
