@@ -5,15 +5,19 @@ import io
 
 import annotations
 
-sg.theme('DarkTeal12')
+
+
+# Variable keeps track of 
 
 # This function is for the user to enter the db password
-def databasepw():
+def set_password():
     dbpassword = input("Please enter your password to access PostGreSQL: ")
-    annotations.setpassword(dbpassword)
+    annotations.set_password(dbpassword)
 
 # Function displays GUI, this is called by project.py
 def display():
+    sg.theme('DarkTeal12')
+
     layout = [
         [
             # [sg.Image('logo.png', size=(50,50))],
@@ -26,17 +30,19 @@ def display():
             [sg.Text('')],
             [sg.Text('')],
             [sg.Text('')],
+            [sg.Text('Output:', font=('Helvetica', 20))],
+            [sg.Text('')],
             [sg.Text(font=('Helvetica', 14), key='-DISPLAY_MSG-')],
-            [sg.Text(size=(50, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_SELECT-')],
-            [sg.Text(size=(50, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_FROM-')],
-            [sg.Text(size=(50, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_WHERE-')],
+            [sg.Text(size=(30, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_SELECT-'), sg.Multiline(size=(100, 5), key='-EXPLAIN_SELECT-', justification='left')],
+            [sg.Text(size=(30, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_FROM-'), sg.Multiline(size=(60, 5), key='-EXPLAIN_FROM-', justification='left')],
+            [sg.Text(size=(30, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_WHERE-'), sg.Multiline(size=(60, 5), key='-EXPLAIN_WHERE-')],
             [sg.Text(size=(100, 20), font=('Helvetica', 14), justification='left', key='-RESULTS-')],
             [sg.Text('')],
             [sg.Text(size=(100, 100), font=('Helvetica', 14), justification='left', key='-OUTPUT-')]
         ]
     ]
 
-    window = sg.Window("Query Plan Explainer", layout, size=(800, 800))
+    window = sg.Window("Query Plan Explainer", layout, size=(700, 800))
 
     while True:
         event, values = window.read()
@@ -48,7 +54,7 @@ def display():
             from_text = values['-FROM-']
             where_text = values['-WHERE-']
 
-            window['-DISPLAY_MSG-'].update('The query to explain is: ')
+            window['-DISPLAY_MSG-'].update('The query to explain is:                                                 Explanation:')
             window['-DISPLAY_SELECT-'].update(select_text)
             window['-DISPLAY_FROM-'].update(from_text)
             window['-DISPLAY_WHERE-'].update(where_text)
@@ -57,14 +63,36 @@ def display():
             # This is the part to call annotation.py with the parameters of the user input SQL text
             # And get back the return values from annotations.py
             # raw_data, output = annotations.explain(select_text, from_text, where_text)
-            raw_data, output = annotations.testexplain(select_text, from_text, where_text)
+
+            select_results, from_results, where_results = annotations.test_explain(select_text, from_text, where_text)
+ 
 
             # Use returned values to label the frontend
-            window['-RESULTS-'].update(raw_data)
-            window['-OUTPUT-'].update(str(output))
+            # window['-RESULTS-'].update(results)
+
+            # Update each of the 3 text boxes
+            window['-EXPLAIN_SELECT-'].update(select_results)
+            window['-EXPLAIN_FROM-'].update(from_results)
+            window['-EXPLAIN_WHERE-'].update(where_results)
+
+
+
         elif event == "Close":
             break
         
     
-    
     window.close()
+
+def error_message():
+    sg.theme('LightBlue')
+    layout = [
+        [
+            [sg.Text('There is an error. Please check your SQL query and try again.\n', font=('Helvetica', 14), justification='center')],
+            [sg.Button("OK", font=('Helvetica', 14), button_color=('Black', 'LightBlue'))],
+        ]
+    ]
+    window = sg.Window("Error Message", layout, size=(500, 80))
+    while True:
+        event, _ = window.read()
+        if event == "OK" or event == sg.WIN_CLOSED:
+            break
