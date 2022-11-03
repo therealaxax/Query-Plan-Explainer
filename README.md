@@ -18,7 +18,7 @@ Note that we are assuming that:
 Password to PostGres will be asked for upon start of program.
 
 ## Running the program
-To run program, use this command:
+To run program, use this command:<br />
 ``` python project.py ```
 
 You will be asked to enter your PostGres password in the terminal. If successful, a GUI window should pop up.
