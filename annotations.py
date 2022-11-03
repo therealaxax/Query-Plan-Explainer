@@ -23,18 +23,18 @@ AQP_CONFIGS = ['enable_bitmapscan',
               'enable_sort',
               'enable_tidscan']
 
-def disable_config(config):
-    # Connect to postgres database
-    print("DISABLED " + config)
-    conn = psycopg2.connect(database=DB_NAME,
-                            user=DB_USER,
-                            password=DB_PASS,
-                            host=DB_HOST,
-                            port=DB_PORT)
-    print("Database connected successfully")
+# def disable_config(config):
+#     # Connect to postgres database
+#     print("DISABLED " + config)
+#     conn = psycopg2.connect(database=DB_NAME,
+#                             user=DB_USER,
+#                             password=DB_PASS,
+#                             host=DB_HOST,
+#                             port=DB_PORT)
+#     print("Database connected successfully")
 
-    cur = conn.cursor()
-    cur.execute('SET ' + config + ' TO off;')
+#     cur = conn.cursor()
+#     cur.execute('SET ' + config + ' TO off;')
 
 def set_password(password):
     global DB_PASS
@@ -86,7 +86,7 @@ def strip_unneeded_data(json_object):
     else:
         return json_object
 
-def aqp_test_explain(select_text, from_text, where_text):
+def aqp_test_explain(select_text, from_text, where_text, AQP_CONFIGS_2):
 
     # Connect to postgres database
     conn = psycopg2.connect(database=DB_NAME,
@@ -102,6 +102,13 @@ def aqp_test_explain(select_text, from_text, where_text):
     # Execute EXPLAIN command on user's input query 
     explain_command = 'EXPLAIN (ANALYSE, COSTS true, FORMAT json) ' + query
     cur = conn.cursor()
+
+    for config in AQP_CONFIGS_2.keys():
+        if AQP_CONFIGS_2[config] == 'False':
+            cur.execute('SET ' + config + ' TO off;')
+        else:
+            cur.execute('SET ' + config + ' TO on;')
+
     cur.execute(explain_command)
     raw_results = cur.fetchall()
     print(raw_results,'\n')

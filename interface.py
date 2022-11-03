@@ -28,6 +28,18 @@ def display():
               'enable_sort',
               'enable_tidscan']
 
+    AQP_CONFIGS_2 = {'enable_bitmapscan':'True',
+              'enable_hashagg':'True',
+              'enable_hashjoin':'True',
+              'enable_indexscan':'True',
+              'enable_indexonlyscan':'True',
+              'enable_material':'True',
+              'enable_mergejoin':'True',
+              'enable_nestloop':'True',
+              'enable_seqscan':'True',
+              'enable_sort':'True',
+              'enable_tidscan':'True'}
+
     # AQP_CHECKBOXES=['bitmapscan','hashagg','hashjoin','indexscan','indexonlyscan','material','mergejoin','nestloop','seqscan','sort','tidscan']
 
     sg.theme('DarkTeal12')
@@ -149,6 +161,8 @@ def display():
             window['-FROM-'].update(disabled=True)
             window['-WHERE-'].update(disabled=True)
             window['Generate AQP'].update(disabled=False)
+            # for event in AQP_CONFIGS:
+            #     values[event] = True
 
             select_text = values['-SELECT-']
             from_text = values['-FROM-']
@@ -223,7 +237,7 @@ def display():
             window['-DISPLAY_WHERE-'].update(where_text)
             print(select_text, from_text, where_text)
 
-            aqp_select_results, aqp_from_results, aqp_where_results = annotations.aqp_test_explain(select_text, from_text, where_text)
+            aqp_select_results, aqp_from_results, aqp_where_results = annotations.aqp_test_explain(select_text, from_text, where_text, AQP_CONFIGS_2)
 
             window['-EXPLAIN_SELECT_AQP-'].update(aqp_select_results)
             window['-EXPLAIN_FROM_AQP-'].update(aqp_from_results)
@@ -242,7 +256,10 @@ def display():
             print(event + " OVER HERE ")
             if values[event] == False:
                 print("HEREEEEEEEE")
-                annotations.disable_config(event)
+                AQP_CONFIGS_2[event] = 'False'
+                # annotations.disable_config(event)
+            else:
+                AQP_CONFIGS_2[event] = 'True'
 
         elif event == "Close":
             break
