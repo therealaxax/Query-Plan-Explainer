@@ -54,6 +54,25 @@ def display():
             from_text = values['-FROM-']
             where_text = values['-WHERE-']
 
+            # FOR DEV ONLY
+            # select_text = 'SELECT AVG(ps_supplycost)' 
+            # from_text = 'FROM partsupp P, supplier S'
+            # where_text = 'WHERE P.ps_suppkey = S.s_suppkey'
+
+            # select_text = 'SELECT *'
+            # from_text = 'FROM region'
+
+            # select_text = 'SELECT COUNT(r_name)'
+            # from_text = 'FROM region'
+
+            # select_text = 'SELECT COUNT(r_name)'
+            # from_text = 'FROM region LIMIT 3'
+
+            # select_text = 'SELECT c_acctbal'
+            # from_text = 'FROM customer'
+            # where_text = 'WHERE c_acctbal > (SELECT AVG(c_acctbal) FROM customer)'
+            # THIS IS FOR DEVELOPMENT 
+
             window['-DISPLAY_MSG-'].update('The query to explain is:                                                 Explanation:')
             window['-DISPLAY_SELECT-'].update(select_text)
             window['-DISPLAY_FROM-'].update(from_text)
