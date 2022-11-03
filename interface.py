@@ -169,9 +169,9 @@ def display():
             where_text = values['-WHERE-']
 
             # FOR DEV ONLY
-            select_text = 'SELECT AVG(ps_supplycost)' 
-            from_text = 'FROM partsupp P, supplier S'
-            where_text = 'WHERE P.ps_suppkey = S.s_suppkey'
+            # select_text = 'SELECT AVG(ps_supplycost)' 
+            # from_text = 'FROM partsupp P, supplier S'
+            # where_text = 'WHERE P.ps_suppkey = S.s_suppkey'
 
             # select_text = 'SELECT *'
             # from_text = 'FROM region'
@@ -214,9 +214,9 @@ def display():
             where_text = values['-WHERE-']
 
             # FOR DEV ONLY
-            select_text = 'SELECT AVG(ps_supplycost)' 
-            from_text = 'FROM partsupp P, supplier S'
-            where_text = 'WHERE P.ps_suppkey = S.s_suppkey'
+            # select_text = 'SELECT AVG(ps_supplycost)' 
+            # from_text = 'FROM partsupp P, supplier S'
+            # where_text = 'WHERE P.ps_suppkey = S.s_suppkey'
 
             # select_text = 'SELECT *'
             # from_text = 'FROM region'
