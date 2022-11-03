@@ -10,10 +10,10 @@
 ''' pip install -r requirements.txt '''
 
 Note that we are assuming that:
-DB_NAME = "TPC-H"
-DB_USER = "postgres"
-DB_HOST = "localhost"
-DB_PORT = "5432"
+- DB_NAME = "TPC-H"
+- DB_USER = "postgres"
+- DB_HOST = "localhost"
+- DB_PORT = "5432"
 
 Password to PostGres will be asked for upon start of program.
 
