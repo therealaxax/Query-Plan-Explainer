@@ -1,0 +1,133 @@
+<mxfile host="65bd71144e">
+    <diagram id="2fPi6oSaLmizoBJPyOhD" name="Page-1">
+        <mxGraphModel dx="1437" dy="807" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=3;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="50" width="1300" height="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="SQL Query Explainer" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="50" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="245" y="100" width="340" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="245" y="140" width="340" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="245" y="180" width="340" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="SELECT Statement" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="95" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="FROM Statement" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="135" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="WHERE Statement" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="175" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="SELECT c_name" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="115" y="298" width="125" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="QEP chosen by DMBS:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="115" y="263" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="FROM customer, orders" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="353" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="WHERE&amp;nbsp; c_custkey = o_custkey" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="413" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="&lt;font color=&quot;#000000&quot;&gt;Aggregate&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="293" width="340" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none ; background-color: rgb(255 , 255 , 255)&quot;&gt;Index Scan on customer since there is no index&lt;br&gt;Index scan on orders since o_custkey is indexed&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="348" width="340" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none ; background-color: rgb(255 , 255 , 255)&quot;&gt;Hash Join -&amp;gt; c_custkey=o_custkey (Total cost = xxx)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="408" width="340" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Send" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FFFFFF;fontColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="510" y="220" width="75" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="SELECT c_name" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="735" y="298" width="125" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="Your custom AQP:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="735" y="263" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="FROM customer, orders" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="730" y="353" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="WHERE&amp;nbsp; c_custkey = o_custkey" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="730" y="413" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="&lt;font color=&quot;#000000&quot;&gt;Aggregate&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="960" y="293" width="340" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none ; background-color: rgb(255 , 255 , 255)&quot;&gt;Seq Scan on customer since there is no index&lt;br&gt;Index scan on orders since o_custkey is indexed&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="960" y="348" width="340" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none ; background-color: rgb(255 , 255 , 255)&quot;&gt;Merge Join&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; background-color: rgb(255 , 255 , 255)&quot;&gt;&amp;nbsp;-&amp;gt; c_custkey=o_custkey (Total cost = xxx)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="960" y="408" width="340" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FFFFFF;fontColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="740" y="95" width="550" height="145" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="enable_hashjoin" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="805" y="110" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;fontColor=#000000;fillColor=#FFFFFF;labelBorderColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="115" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="Generate AQP" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FFFFFF;fontColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="1160" y="245" width="115" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="enable_hashjoin" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="815" y="120" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;fontColor=#000000;fillColor=#FFFFFF;labelBorderColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="770" y="125" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="enable_hashjoin" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="825" y="130" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;fontColor=#000000;fillColor=#FFFFFF;labelBorderColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="780" y="135" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="enable_hashjoin" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="835" y="140" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;fontColor=#000000;fillColor=#FFFFFF;labelBorderColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="790" y="145" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="enable_hashjoin" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="845" y="150" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;fontColor=#000000;fillColor=#FFFFFF;labelBorderColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="800" y="155" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="enable_hashjoin" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="855" y="160" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;fontColor=#000000;fillColor=#FFFFFF;labelBorderColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="810" y="165" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="enable_hashjoin" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="1035" y="110" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;fontColor=#000000;fillColor=#FFFFFF;labelBorderColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="990" y="115" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;ggggggg&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;labelBorderColor=#000000;fontColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="510" width="960" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="Explanation:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#FFFFFF;labelBorderColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="480" width="120" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

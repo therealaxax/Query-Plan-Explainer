@@ -22,9 +22,9 @@ def display():
         [
             # [sg.Image('logo.png', size=(50,50))],
             [sg.Text('Please enter your SQL query\n', font=('Helvetica', 20))],
-            [sg.Text('SELECT Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-SELECT-', font=('Helvetica', 14))],
-            [sg.Text('FROM Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-FROM-', font=('Helvetica', 14))],
-            [sg.Text('WHERE Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-WHERE-', font=('Helvetica', 14))],
+            [sg.Text('SELECT Statement', font=('Helvetica', 14), justification='left', size =(25, 1)), sg.InputText(key='-SELECT-', font=('Helvetica', 14))],
+            [sg.Text('FROM Statement', font=('Helvetica', 14), justification='left', size =(25, 1)), sg.InputText(key='-FROM-', font=('Helvetica', 14))],
+            [sg.Text('WHERE Statement', font=('Helvetica', 14), justification='left', size =(25, 1)), sg.InputText(key='-WHERE-', font=('Helvetica', 14))],
             [sg.Text('')],
             [sg.Button("Send", font=('Helvetica', 14), button_color=('Black', 'LightBlue')), sg.Button("Close", font=('Helvetica', 14), button_color=('Black', 'LightBlue'))],
             [sg.Text('')],
@@ -33,16 +33,16 @@ def display():
             [sg.Text('Output:', font=('Helvetica', 20))],
             [sg.Text('')],
             [sg.Text(font=('Helvetica', 14), key='-DISPLAY_MSG-')],
-            [sg.Text(size=(30, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_SELECT-'), sg.Multiline(size=(100, 5), key='-EXPLAIN_SELECT-', justification='left')],
+            [sg.Text(size=(30, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_SELECT-'), sg.Multiline(size=(60, 5), key='-EXPLAIN_SELECT-', justification='left')],
             [sg.Text(size=(30, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_FROM-'), sg.Multiline(size=(60, 5), key='-EXPLAIN_FROM-', justification='left')],
-            [sg.Text(size=(30, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_WHERE-'), sg.Multiline(size=(60, 5), key='-EXPLAIN_WHERE-')],
+            [sg.Text(size=(30, 2), font=('Helvetica', 18), justification='left', key='-DISPLAY_WHERE-'), sg.Multiline(size=(60, 5), key='-EXPLAIN_WHERE-', justification='left')],
             [sg.Text(size=(100, 20), font=('Helvetica', 14), justification='left', key='-RESULTS-')],
             [sg.Text('')],
             [sg.Text(size=(100, 100), font=('Helvetica', 14), justification='left', key='-OUTPUT-')]
         ]
     ]
 
-    window = sg.Window("Query Plan Explainer", layout, size=(700, 800))
+    window = sg.Window("Query Plan Explainer", layout, size=(1000, 800))
 
     while True:
         event, values = window.read()
@@ -55,9 +55,9 @@ def display():
             where_text = values['-WHERE-']
 
             # FOR DEV ONLY
-            # select_text = 'SELECT AVG(ps_supplycost)' 
-            # from_text = 'FROM partsupp P, supplier S'
-            # where_text = 'WHERE P.ps_suppkey = S.s_suppkey'
+            select_text = 'SELECT AVG(ps_supplycost)' 
+            from_text = 'FROM partsupp P, supplier S'
+            where_text = 'WHERE P.ps_suppkey = S.s_suppkey'
 
             # select_text = 'SELECT *'
             # from_text = 'FROM region'
