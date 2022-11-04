@@ -11,6 +11,30 @@ DB_PORT = "5432"
 SELECT_KEYWORDS = ["Aggregate"]
 FROM_KEYWORDS = ["Seq Scan", "Bitmap Index Scan", "Bitmap Heap Scan", "Index Scan", "Index Only Scan", "Tid Scan", "Index Skip Scan"]
 WHERE_KEYWORDS = ["Hash Join", "Nested Loop", "Merge Join", "Sort"]
+AQP_CONFIGS = ['enable_bitmapscan',
+              'enable_hashagg',
+              'enable_hashjoin',
+              'enable_indexscan',
+              'enable_indexonlyscan',
+              'enable_material',
+              'enable_mergejoin',
+              'enable_nestloop',
+              'enable_seqscan',
+              'enable_sort',
+              'enable_tidscan']
+
+# def disable_config(config):
+#     # Connect to postgres database
+#     print("DISABLED " + config)
+#     conn = psycopg2.connect(database=DB_NAME,
+#                             user=DB_USER,
+#                             password=DB_PASS,
+#                             host=DB_HOST,
+#                             port=DB_PORT)
+#     print("Database connected successfully")
+
+#     cur = conn.cursor()
+#     cur.execute('SET ' + config + ' TO off;')
 
 def set_password(password):
     global DB_PASS
@@ -62,6 +86,61 @@ def strip_unneeded_data(json_object):
     else:
         return json_object
 
+def aqp_test_explain(select_text, from_text, where_text, AQP_CONFIGS_2):
+
+    # Connect to postgres database
+    conn = psycopg2.connect(database=DB_NAME,
+                            user=DB_USER,
+                            password=DB_PASS,
+                            host=DB_HOST,
+                            port=DB_PORT)
+    print("Database connected successfully")
+
+    # Construct SQL query text to EXPLAIN
+    query = select_text + '\n' + from_text + '\n' + where_text
+
+    # Execute EXPLAIN command on user's input query 
+    explain_command = 'EXPLAIN (ANALYSE, COSTS true, FORMAT json) ' + query
+    cur = conn.cursor()
+
+    for config in AQP_CONFIGS_2.keys():
+        if AQP_CONFIGS_2[config] == 'False':
+            cur.execute('SET ' + config + ' TO off;')
+        else:
+            cur.execute('SET ' + config + ' TO on;')
+
+    cur.execute(explain_command)
+    raw_results = cur.fetchall()
+    print(raw_results,'\n')
+
+    # Get JSON string
+    raw_results = json.dumps(raw_results)
+    # print(raw_results,'\n')
+
+    # Convert JSON string to dict
+    results = json.loads(raw_results)
+    # print(results,'\n')
+
+    # Call strip_to_plan function to remove unneccesary data in dict
+    imp_results = strip_unneeded_data(results)
+    print(imp_results,'\n')
+
+    select_results, from_results, where_results = process_plan_dict(imp_results, "", "", "")
+    print(select_results, from_results, where_results)
+
+    # data = print_results
+    # data = textwrap.wrap(data, 6)
+    print('Data fetched successfully\n')
+
+    conn.close()
+
+    # Identify tables mentioned in query
+    tables_text = from_text.strip('FROM ')
+    tables = tables_text.split(',')
+    print('Tables are: ', tables, '\n')
+
+    return select_results, from_results, where_results
+
 def test_explain(select_text, from_text, where_text):
 
     # Connect to postgres database
@@ -78,6 +157,10 @@ def test_explain(select_text, from_text, where_text):
     # Execute EXPLAIN command on user's input query 
     explain_command = 'EXPLAIN (ANALYSE, COSTS true, FORMAT json) ' + query
     cur = conn.cursor()
+
+    for config in AQP_CONFIGS:
+        cur.execute('SET ' + config + ' TO on;')
+
     cur.execute(explain_command)
     raw_results = cur.fetchall()
     print(raw_results,'\n')
