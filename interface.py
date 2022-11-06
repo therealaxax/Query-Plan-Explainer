@@ -11,6 +11,25 @@ import annotations
 def set_password():
     dbpassword = input("Please enter your password to access PostGreSQL: ")
     annotations.set_password(dbpassword)
+    
+def get_scaling():
+    # called before window created
+    root = sg.tk.Tk()
+    scaling = root.winfo_fpixels('1i')/72
+    root.destroy()
+    return scaling
+
+# Find the number in original screen when GUI designed.
+my_scaling = 1.334646962233169      # call get_scaling()
+my_width, my_height = 1536, 864     # call sg.Window.get_screen_size()
+
+# Get the number for new screen
+scaling_old = get_scaling()
+width, height = sg.Window.get_screen_size()
+
+scaling = scaling_old * min(width / my_width, height / my_height)
+
+sg.set_options(scaling=scaling)
 
 # Function displays GUI, this is called by project.py
 def display():
@@ -44,12 +63,12 @@ def display():
 
     qep_col1 = [
         [sg.Text('QEP chosen by DBMS:', font=('Helvetica', 16))],
-        [sg.Multiline(size=(40, 15), key='-QEP_TREE-', justification='left', font=('Helvetica', 12))],
+        [sg.Multiline(size=(40, 15), key='-QEP_TREE-', justification='left')],
     ]
 
     qep_col2 = [
         [sg.Text('QEP detailed steps:', font=('Helvetica', 16))],
-        [sg.Multiline(size=(60, 15), key='-QEP_STEPS-', justification='left', font=('Helvetica', 12))],
+        [sg.Multiline(size=(60, 15), key='-QEP_STEPS-', justification='left')],
     ]
 
     qep_main = [
@@ -72,12 +91,12 @@ def display():
 
     aqp_col1 = [
         [sg.Text('AQP chosen by DBMS:', font=('Helvetica', 16))],
-        [sg.Multiline(size=(40, 15), key='-AQP_TREE-', justification='left', font=('Helvetica', 12))],
+        [sg.Multiline(size=(40, 15), key='-AQP_TREE-', justification='left')],
     ]
 
     aqp_col2 = [
         [sg.Text('AQP detailed steps:', font=('Helvetica', 16))],
-        [sg.Multiline(size=(60, 15), key='-AQP_STEPS-', justification='left', font=('Helvetica', 12))],
+        [sg.Multiline(size=(60, 15), key='-AQP_STEPS-', justification='left')],
     ]
 
     aqp_main = [
@@ -102,12 +121,12 @@ def display():
         [sg.Column(qep_main),sg.Column(aqp_main)],
         [sg.Text('')],
         [sg.Text('')],
-        [sg.Text('                  Explanation of differences', font=('Helvetica', 20))],
-        [sg.Text('                             '), sg.Multiline(size=(200, 15), key='-EXPLANATION-', justification='l', font=('Helvetica', 14))],
+        [sg.Text('   Explanation of differences', font=('Helvetica', 20))],
+        [sg.Text(' '), sg.Multiline(size=(200, 15), key='-EXPLANATION-', justification='l', font=('Helvetica', 14))],
     ]
 
 
-    window = sg.Window("Query Plan Explainer", layout, size=(1600, 800))
+    window = sg.Window("Query Plan Explainer", layout, finalize=True)
 
     while True:
         event, values = window.read()
