@@ -154,7 +154,7 @@ def display():
             print(AQP_CONFIGS_2.values())
             if "False" in AQP_CONFIGS_2.values():
                 # Generate explanation
-                explanation = annotations.explanation(qep_results, aqp_results) # list
+                explanation = annotations.explanation(qep_results, aqp_results, AQP_CONFIGS_2) # list
                 explanation_text = "\n\n".join(explanation) # turn list into text, split each element by newline
                 window['-EXPLANATION-'].update(explanation_text)
             else:
@@ -173,13 +173,14 @@ def display():
             window['-FROM-'].update("")
             window['-WHERE-'].update("")
 
+        elif event == "Generate AQP":
+            select_text = values['-SELECT-']
+            from_text = values['-FROM-']
+            where_text = values['-WHERE-']
 
         elif event in AQP_CONFIGS:
-            # print(event + " OVER HERE ")
             if values[event] == False:
-                # print("HEREEEEEEEE")
                 AQP_CONFIGS_2[event] = 'False'
-                # annotations.disable_config(event)
             else:
                 AQP_CONFIGS_2[event] = 'True'
 

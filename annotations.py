@@ -84,7 +84,7 @@ def strip_unneeded_data(json_object):
     else:
         return json_object
 
-def explanation(qep_results, aqp_results):
+def explanation(qep_results, aqp_results, AQP_CONFIGS_2):
     explanation = []
     
     if (qep_results.count('Seq Scan') > aqp_results.count('Seq Scan')):
@@ -118,19 +118,19 @@ def explanation(qep_results, aqp_results):
         explanation.append(string)
 
     # include explanations for seq scan, sort, nested loop, material (which cannot be completed turned off)
-    if (qep_results.count('Seq Scan') == aqp_results.count('Seq Scan') and aqp_results.count('Seq Scan') > 0):
+    if (qep_results.count('Seq Scan') == aqp_results.count('Seq Scan') and aqp_results.count('Seq Scan') > 0 and AQP_CONFIGS_2['enable_seqscan'] == "False"):
         string = "It is impossible to suppress sequential scans for this query entirely. Turning this variable off discourages the planner from using one if there are other methods available. Thus, Seq Scan is still utlised in the AQP, although cost is a lot higher."
         explanation.append(string)
 
-    if (qep_results.count('Sort') == aqp_results.count('Sort') and aqp_results.count('Sort') > 0):
+    if (qep_results.count('Sort') == aqp_results.count('Sort') and aqp_results.count('Sort') > 0 and AQP_CONFIGS_2['enable_sort'] == "False"):
         string = "It is impossible to suppress sorting for this query entirely. Turning this variable off discourages the planner from using one if there are other methods available. Thus, Sort is still utlised in the AQP, although cost is a lot higher."
         explanation.append(string)
 
-    if (qep_results.count('Nested Loop') == aqp_results.count('Nested Loop') and aqp_results.count('Nested Loop') > 0):
+    if (qep_results.count('Nested Loop') == aqp_results.count('Nested Loop') and aqp_results.count('Nested Loop') > 0 and AQP_CONFIGS_2['enable_nestloop'] == "False"):
         string = "It is impossible to suppress nested loops for this query entirely. Turning this variable off discourages the planner from using one if there are other methods available. Thus, Nested Loop is still utlised in the AQP, although cost is a lot higher."
         explanation.append(string)
 
-    if (qep_results.count('Material') == aqp_results.count('Material') and aqp_results.count('Material') > 0):
+    if (qep_results.count('Material') == aqp_results.count('Material') and aqp_results.count('Material') > 0 and AQP_CONFIGS_2['enable_material'] == "False"):
         string = "It is impossible to suppress material for this query entirely. Turning this variable off discourages the planner from using one if there are other methods available. Thus, Material is still utlised in the AQP, although cost is a lot higher."
         explanation.append(string)
     
@@ -210,6 +210,10 @@ def test_explain(select_text, from_text, where_text):
     # Execute EXPLAIN command on user's input query 
     explain_command = 'EXPLAIN (ANALYSE, COSTS true, FORMAT json) ' + query
     cur = conn.cursor()
+
+    for config in AQP_CONFIGS:
+        cur.execute('SET ' + config + ' TO on;')
+
     cur.execute(explain_command)
     raw_results = cur.fetchall()
     print(raw_results,'\n')
