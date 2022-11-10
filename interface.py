@@ -193,7 +193,7 @@ def display():
             window['-SELECT_STATEMENT-'].update('----------> ' + select_text)
             window['-FROM_STATEMENT-'].update('----------> ' + from_text)
             window['-WHERE_STATEMENT-'].update('----------> ' + where_text)
-            window['-USER_QUERY_TITLE-'].update('                                                                                                    User Query')
+            # window['-USER_QUERY_TITLE-'].update('                                                                                                    User Query')
 
 
         elif event == "Generate AQP":
