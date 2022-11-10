@@ -246,6 +246,17 @@ def display():
             window['-SELECT-'].update("")
             window['-FROM-'].update("")
             window['-WHERE-'].update("")
+            window['-EXPLANATION_SELECT-'].update("")
+            window['-EXPLANATION_FROM-'].update("")
+            window['-EXPLANATION_WHERE-'].update("")
+            window['-SELECT_STATEMENT-'].update('')
+            window['-FROM_STATEMENT-'].update('')
+            window['-WHERE_STATEMENT-'].update('')
+            window['-QEP_STEPS-'].update('')
+            window['-QEP_TREE-'].update('')
+            window['-AQP_STEPS-'].update('')
+            window['-AQP_TREE-'].update('')
+ 
 
         elif event == "Generate AQP":
             select_text = values['-SELECT-']
