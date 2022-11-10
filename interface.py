@@ -63,24 +63,24 @@ def display():
     sg.theme('Reddit')
 
     qep_col1 = [
-        [sg.Text('QEP chosen by DBMS:', font=('Helvetica', 16))],
-        [sg.Multiline(size=(35, 10), key='-QEP_TREE-', justification='left')],
+        [sg.Text('QEP chosen by DBMS:', font=('Helvetica', 14))],
+        [sg.Multiline(size=(35, 8), key='-QEP_TREE-', justification='left')],
     ]
 
     qep_col2 = [
-        [sg.Text('QEP detailed steps:', font=('Helvetica', 16))],
-        [sg.Multiline(size=(50, 10), key='-QEP_STEPS-', justification='left')],
+        [sg.Text('QEP detailed steps:', font=('Helvetica', 14))],
+        [sg.Multiline(size=(50, 8), key='-QEP_STEPS-', justification='left')],
     ]
 
     qep_main = [
-        [sg.Text('Please enter your SQL query\n', font=('Helvetica', 20), key='-ERROR_MESSAGE-')],
+        [sg.Text('Please enter your SQL query\n', font=('Helvetica', 16), key='-ERROR_MESSAGE-')],
         [sg.Text('SELECT Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-SELECT-', font=('Helvetica', 14))],
-        [sg.Text('')],
-        [sg.Text('FROM Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-FROM-', font=('Helvetica', 14))],
-        [sg.Text('')],
-        [sg.Text('WHERE Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-WHERE-', font=('Helvetica', 14))],
-        [sg.Text('')],
         # [sg.Text('')],
+        [sg.Text('FROM Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-FROM-', font=('Helvetica', 14))],
+        # [sg.Text('')],
+        [sg.Text('WHERE Statement', font=('Helvetica', 14), size =(25, 1)), sg.InputText(key='-WHERE-', font=('Helvetica', 14))],
+        # [sg.Text('')],
+        [sg.Text('')],
         [sg.Button("Generate QEP", font=('Helvetica', 14), button_color=('Black', 'LightBlue')), sg.Button("Reset", font=('Helvetica', 14), button_color=('Black', 'LightBlue'))],
         # [sg.Text('')],
         # [sg.Text('')],
@@ -91,27 +91,27 @@ def display():
 
 
     aqp_col1 = [
-        [sg.Text('AQP chosen by DBMS:', font=('Helvetica', 16))],
-        [sg.Multiline(size=(35, 10), key='-AQP_TREE-', justification='left')],
+        [sg.Text('AQP chosen by DBMS:', font=('Helvetica', 14))],
+        [sg.Multiline(size=(35, 8), key='-AQP_TREE-', justification='left')],
     ]
 
     aqp_col2 = [
-        [sg.Text('AQP detailed steps:', font=('Helvetica', 16))],
-        [sg.Multiline(size=(50, 10), key='-AQP_STEPS-', justification='left')],
+        [sg.Text('AQP detailed steps:', font=('Helvetica', 14))],
+        [sg.Multiline(size=(50, 8), key='-AQP_STEPS-', justification='left')],
     ]
 
     aqp_main = [
-        [sg.Text('Please select AQP by restricting operations DBMS considers', font=('Helvetica', 20))],
+        [sg.Text('Please select AQP by restricting operations DBMS considers', font=('Helvetica', 16))],
         [sg.Text('')],
         [sg.Checkbox('bitmapscan', font=('Helvetica', 14), key='enable_bitmapscan', enable_events=True, default=True), sg.Checkbox('hashjoin', key='enable_hashjoin', font=('Helvetica', 14), enable_events=True, default=True)],
         [sg.Checkbox('indexscan', font=('Helvetica', 14), key='enable_indexscan', enable_events=True, default=True), sg.Checkbox('indexonlyscan', font=('Helvetica', 14), key='enable_indexonlyscan', enable_events=True, default=True)],
         [sg.Checkbox('nestloop', font=('Helvetica', 14), key='enable_nestloop', enable_events=True, default=True), sg.Checkbox('seqscan', font=('Helvetica', 14), key='enable_seqscan', enable_events=True, default=True)],
         [sg.Checkbox('mergejoin', font=('Helvetica', 14), key='enable_mergejoin', enable_events=True, default=True)],
         # [sg.Text('')],
-        [sg.Text('')],
-        [sg.Text('')],
+        # [sg.Text('')],
+        # [sg.Text('')],
         [sg.Button("Generate AQP", font=('Helvetica', 14), button_color=('Black', 'LightBlue'), disabled=True)],
-        [sg.Text('')],
+        # [sg.Text('')],
         [sg.Column(aqp_col1), sg.Column(aqp_col2)]
 
     ]
