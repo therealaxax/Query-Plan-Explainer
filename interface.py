@@ -131,7 +131,7 @@ def display():
                 qep_results, total_cost, tree = annotations.explain(select_text, from_text, where_text)
                 window['-ERROR_MESSAGE-'].update("Please enter your SQL query\n")
             except:
-                window['-ERROR_MESSAGE-'].update("The SQL Query might be wrong. Please try again!\n")
+                window['-ERROR_MESSAGE-'].update("The SQL Query or password might be wrong. Please try again!\n")
                 continue
             
             # Update GUI to allow next steps and prevent editting submitted query
